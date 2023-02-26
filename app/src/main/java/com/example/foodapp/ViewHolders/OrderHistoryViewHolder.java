@@ -40,5 +40,7 @@ public class OrderHistoryViewHolder extends RecyclerView.ViewHolder {
 
         boolean isExpanded=orderHistoryItem.getIsExpanded();
         expandableView.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
+
+
     }
 }

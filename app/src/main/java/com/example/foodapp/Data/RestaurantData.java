@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class RestaurantData {
 
-    public static final int NUMBER_OF_RESTAURANTS=15;
+    public static final int NUMBER_OF_RESTAURANTS=12;
     private static ArrayList<Restaurant> restaurants=new ArrayList<Restaurant>();;
 
     public static String[] streetNames=new String[]{
@@ -59,6 +59,11 @@ public class RestaurantData {
                             getRandomAddress(),
                     restaurantImages[i]));
         }
+
+        restaurants.add(new Restaurant(NUMBER_OF_RESTAURANTS+1, "Test Add",
+                getRandomAddress(),
+                restaurantImages[NUMBER_OF_RESTAURANTS+1]));
+
         return restaurants;
     }
 

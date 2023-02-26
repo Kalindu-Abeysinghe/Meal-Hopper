@@ -4,7 +4,10 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentContainerView;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,14 +16,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.foodapp.Adapters.RestaurantListAdapter;
+import com.example.foodapp.Adapters.TopPicksAdapter;
+import com.example.foodapp.Data.TopPicksData;
 import com.example.foodapp.Database.FoodAppDBModel;
 import com.example.foodapp.Interfaces.OnActionBarListener;
 import com.example.foodapp.Interfaces.OnMenuItemClickListener;
 import com.example.foodapp.MainActivity;
+import com.example.foodapp.Models.MenuItemModel;
 import com.example.foodapp.Models.Restaurant;
 import com.example.foodapp.R;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class RestaurantList extends Fragment implements OnMenuItemClickListener {
 
@@ -62,8 +69,13 @@ public class RestaurantList extends Fragment implements OnMenuItemClickListener 
 
         View view= inflater.inflate(R.layout.fragment_restaurant_list, container, false);
 
-        RecyclerView recyclerView=view.findViewById(R.id.restaurantRecyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(
+        FragmentManager fm=getParentFragmentManager();
+        fm.beginTransaction()
+                .replace(R.id.top_pick_fragment_container, new TopPickFragment())
+                .commit();
+
+        RecyclerView restaurantRecyclerView=view.findViewById(R.id.restaurantRecyclerView);
+        restaurantRecyclerView.setLayoutManager(new LinearLayoutManager(
                     getActivity(),
                     LinearLayoutManager.VERTICAL,
                     false
@@ -84,7 +96,7 @@ public class RestaurantList extends Fragment implements OnMenuItemClickListener 
         RestaurantListAdapter restaurantListAdapter=new RestaurantListAdapter(
                  restaurantList,
                 this);
-        recyclerView.setAdapter(restaurantListAdapter);
+        restaurantRecyclerView.setAdapter(restaurantListAdapter);
 
         return view;
     }
@@ -93,4 +105,6 @@ public class RestaurantList extends Fragment implements OnMenuItemClickListener 
     public void onMenuItemClicked(View view, int position) {
         onActionBarListener.onReplaceFragment(new MenuItemList(restaurantList.get(position).getId()));
     }
+
+
 }

@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.foodapp.Common.CartViewModel;
 import com.example.foodapp.Data.Cart;
@@ -128,6 +129,8 @@ public class MenuItem extends Fragment {
                 Cart.addItemToCart(menuItemReceived,
                         Integer.parseInt(String.valueOf(countTextView.getText())),
                         menuItemReceived.getRestaurantId());
+
+                Toast.makeText(getContext(), "Successfully Added to Cart", Toast.LENGTH_SHORT).show();
             }
         });
     }

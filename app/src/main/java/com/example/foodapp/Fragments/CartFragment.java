@@ -123,7 +123,7 @@ public class CartFragment extends Fragment{
 
                 }
                 catch (Exception e){
-                    Toast toast=Toast.makeText(getContext(), "Unsuccessful"+e.getMessage(), Toast.LENGTH_SHORT);
+                    Toast toast=Toast.makeText(getContext(), "Please Log in to check out!", Toast.LENGTH_SHORT);
                     toast.show();
                 }
             }
